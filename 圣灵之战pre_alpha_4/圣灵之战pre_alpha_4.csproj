@@ -8,10 +8,11 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>圣灵之战pre_alpha_4</RootNamespace>
     <AssemblyName>圣灵之战pre_alpha_4</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -38,6 +39,9 @@
   <ItemGroup>
     <Reference Include="DataEdit">
       <HintPath>..\..\..\..\DataRead\DataRead\bin\Debug\DataEdit.dll</HintPath>
+    </Reference>
+    <Reference Include="Index_Contorl_Library">
+      <HintPath>..\..\..\..\Index_Contorl_Library\Index_Contorl_Library\bin\Debug\Index_Contorl_Library.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -164,6 +168,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="[Form]Dialog\frm_CreatePlayer.resx">
       <DependentUpon>frm_CreatePlayer.cs</DependentUpon>

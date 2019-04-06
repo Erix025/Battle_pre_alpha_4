@@ -32,13 +32,11 @@ namespace 圣灵之战pre_alpha_4._Form_Dialog
             this.lst_CommodityName = new System.Windows.Forms.ListBox();
             this.lst_CommodityPrize = new System.Windows.Forms.ListBox();
             this.lab_PlayerMoney = new System.Windows.Forms.Label();
-            this.txt_Number = new System.Windows.Forms.TextBox();
-            this.but_Reduce = new System.Windows.Forms.Button();
-            this.but_Add = new System.Windows.Forms.Button();
             this.lab_PreView = new System.Windows.Forms.Label();
             this.lab_CommodityInfo = new System.Windows.Forms.Label();
             this.but_Canel = new System.Windows.Forms.Button();
             this.but_Buy = new System.Windows.Forms.Button();
+            this.icnc_Main = new Index_Contorl_Library.IC_NumberChangeBox();
             this.SuspendLayout();
             // 
             // lst_CommodityName
@@ -73,45 +71,11 @@ namespace 圣灵之战pre_alpha_4._Form_Dialog
             this.lab_PlayerMoney.TabIndex = 2;
             this.lab_PlayerMoney.Text = "当前拥有金钱：";
             // 
-            // txt_Number
-            // 
-            this.txt_Number.Enabled = false;
-            this.txt_Number.Font = new System.Drawing.Font("宋体", 24F);
-            this.txt_Number.Location = new System.Drawing.Point(374, 206);
-            this.txt_Number.Name = "txt_Number";
-            this.txt_Number.Size = new System.Drawing.Size(100, 44);
-            this.txt_Number.TabIndex = 3;
-            this.txt_Number.TextChanged += new System.EventHandler(this.txt_Number_TextChanged);
-            // 
-            // but_Reduce
-            // 
-            this.but_Reduce.Enabled = false;
-            this.but_Reduce.Font = new System.Drawing.Font("宋体", 18F);
-            this.but_Reduce.Location = new System.Drawing.Point(317, 210);
-            this.but_Reduce.Name = "but_Reduce";
-            this.but_Reduce.Size = new System.Drawing.Size(51, 37);
-            this.but_Reduce.TabIndex = 4;
-            this.but_Reduce.Text = "←";
-            this.but_Reduce.UseVisualStyleBackColor = true;
-            this.but_Reduce.Click += new System.EventHandler(this.but_Reduce_Click);
-            // 
-            // but_Add
-            // 
-            this.but_Add.Enabled = false;
-            this.but_Add.Font = new System.Drawing.Font("宋体", 18F);
-            this.but_Add.Location = new System.Drawing.Point(480, 210);
-            this.but_Add.Name = "but_Add";
-            this.but_Add.Size = new System.Drawing.Size(51, 37);
-            this.but_Add.TabIndex = 5;
-            this.but_Add.Text = "→";
-            this.but_Add.UseVisualStyleBackColor = true;
-            this.but_Add.Click += new System.EventHandler(this.but_Add_Click);
-            // 
             // lab_PreView
             // 
             this.lab_PreView.AutoSize = true;
             this.lab_PreView.Font = new System.Drawing.Font("宋体", 12F);
-            this.lab_PreView.Location = new System.Drawing.Point(300, 260);
+            this.lab_PreView.Location = new System.Drawing.Point(300, 290);
             this.lab_PreView.Name = "lab_PreView";
             this.lab_PreView.Size = new System.Drawing.Size(0, 16);
             this.lab_PreView.TabIndex = 6;
@@ -127,7 +91,7 @@ namespace 圣灵之战pre_alpha_4._Form_Dialog
             // but_Canel
             // 
             this.but_Canel.Font = new System.Drawing.Font("宋体", 12F);
-            this.but_Canel.Location = new System.Drawing.Point(456, 307);
+            this.but_Canel.Location = new System.Drawing.Point(461, 333);
             this.but_Canel.Name = "but_Canel";
             this.but_Canel.Size = new System.Drawing.Size(75, 35);
             this.but_Canel.TabIndex = 8;
@@ -139,7 +103,7 @@ namespace 圣灵之战pre_alpha_4._Form_Dialog
             // 
             this.but_Buy.Enabled = false;
             this.but_Buy.Font = new System.Drawing.Font("宋体", 12F);
-            this.but_Buy.Location = new System.Drawing.Point(317, 307);
+            this.but_Buy.Location = new System.Drawing.Point(322, 333);
             this.but_Buy.Name = "but_Buy";
             this.but_Buy.Size = new System.Drawing.Size(75, 35);
             this.but_Buy.TabIndex = 9;
@@ -147,19 +111,29 @@ namespace 圣灵之战pre_alpha_4._Form_Dialog
             this.but_Buy.UseVisualStyleBackColor = true;
             this.but_Buy.Click += new System.EventHandler(this.but_Buy_Click);
             // 
+            // icnc_Main
+            // 
+            this.icnc_Main.Enabled = false;
+            this.icnc_Main.Font = new System.Drawing.Font("宋体", 12F);
+            this.icnc_Main.Location = new System.Drawing.Point(294, 204);
+            this.icnc_Main.Margin = new System.Windows.Forms.Padding(4);
+            this.icnc_Main.Name = "icnc_Main";
+            this.icnc_Main.Number = 1;
+            this.icnc_Main.Size = new System.Drawing.Size(291, 71);
+            this.icnc_Main.TabIndex = 10;
+            this.icnc_Main.NumberChanged += new Index_Contorl_Library.IC_NumberChangeBox.NumberChangedHandler(this.Icnc_Main_NumberChanged);
+            // 
             // frm_Shop
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(571, 403);
+            this.ClientSize = new System.Drawing.Size(592, 403);
             this.ControlBox = false;
+            this.Controls.Add(this.icnc_Main);
             this.Controls.Add(this.but_Buy);
             this.Controls.Add(this.but_Canel);
             this.Controls.Add(this.lab_CommodityInfo);
             this.Controls.Add(this.lab_PreView);
-            this.Controls.Add(this.but_Add);
-            this.Controls.Add(this.but_Reduce);
-            this.Controls.Add(this.txt_Number);
             this.Controls.Add(this.lab_PlayerMoney);
             this.Controls.Add(this.lst_CommodityPrize);
             this.Controls.Add(this.lst_CommodityName);
@@ -171,17 +145,14 @@ namespace 圣灵之战pre_alpha_4._Form_Dialog
             this.PerformLayout();
 
         }
-
         #endregion
         private ListBox lst_CommodityName;
         private ListBox lst_CommodityPrize;
         private Label lab_PlayerMoney;
-        private TextBox txt_Number;
-        private Button but_Reduce;
-        private Button but_Add;
         private Label lab_PreView;
         private Label lab_CommodityInfo;
         private Button but_Canel;
         private Button but_Buy;
+        private Index_Contorl_Library.IC_NumberChangeBox icnc_Main;
     }
 }

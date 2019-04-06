@@ -5,8 +5,6 @@ namespace 圣灵之战pre_alpha_4._Form_Dialog
 {
     public partial class frm_Shop : Form
     {
-        int max_number = 0;
-        int number = 0;
         Commodity commodity;
         public frm_Shop()
         {
@@ -22,60 +20,6 @@ namespace 圣灵之战pre_alpha_4._Form_Dialog
                 lst_CommodityPrize.Items.Add(tem.Prize);
             }
         }
-        private void NumberChange()//修正数量
-        {
-            but_Reduce.Enabled = true;
-            but_Add.Enabled = true;
-            if (number == 1)
-            {
-                but_Reduce.Enabled = false;
-            }
-            if (number == max_number)
-            {
-                but_Add.Enabled = false;
-            }
-            if (number < 1)
-            {
-                number = 1;
-                NumberChange();
-            }
-            if (number > max_number)
-            {
-                number = max_number;
-                NumberChange();
-            }
-            txt_Number.Text = number.ToString();
-            lab_PreView.Text = "共计：" + number * commodity.Prize + "$";
-        }
-
-        private void but_Reduce_Click(object sender, EventArgs e)
-        {
-            number--;
-            NumberChange();
-        }
-
-        private void but_Add_Click(object sender, EventArgs e)
-        {
-            number++;
-            NumberChange();
-        }
-
-        private void txt_Number_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                number = int.Parse(txt_Number.Text);
-            }
-            catch
-            {
-                if (txt_Number.Text != "")
-                {
-                    MessageBox.Show("请输入正确的数字");
-                }
-            }
-            NumberChange();
-        }
-
         private void lst_commodityName_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (lst_CommodityName.SelectedIndex != -1 &&
@@ -88,15 +32,13 @@ namespace 圣灵之战pre_alpha_4._Form_Dialog
             if (commodity.Prize > PlayerValue.Player.Money)
             {
                 lab_PreView.Text = "您太穷了，请赚够钱再来。";
+                but_Buy.Enabled = false;
             }
             else
             {
-                number = 1;
-                max_number = PlayerValue.Player.Money / commodity.Prize;
-                but_Add.Enabled = true;
-                txt_Number.Enabled = true;
+                icnc_Main.SetMax( PlayerValue.Player.Money / commodity.Prize);
+                icnc_Main.Enabled = true;
                 but_Buy.Enabled = true;
-                NumberChange();
             }
         }
 
@@ -116,9 +58,13 @@ namespace 圣灵之战pre_alpha_4._Form_Dialog
 
         private void but_Buy_Click(object sender, EventArgs e)
         {
-            PlayerValue.Player.Money -= number * commodity.Prize;
-            PlayerValue.Items.Add(new Item(commodity.ID, number));
+            PlayerValue.Player.Money -= icnc_Main.Number * commodity.Prize;
+            PlayerValue.Items.Add(new Item(commodity.ID, icnc_Main.Number));
             Dispose();
+        }
+        private void Icnc_Main_NumberChanged(object sender, EventArgs e)
+        {
+            lab_PreView.Text = "共计：" + icnc_Main.Number * commodity.Prize + "$";
         }
     }
 }

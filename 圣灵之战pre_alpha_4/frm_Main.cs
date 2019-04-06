@@ -270,11 +270,14 @@ namespace 圣灵之战pre_alpha_4
 
         private void lst_PlayerBag_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (lst_PlayerBag.SelectedIndex != -1 && lst_PlayerBag.SelectedIndex != lst_PlayerBagCount.SelectedIndex)
+            if (lst_PlayerBag.SelectedIndex != -1 )
             {
-                lst_PlayerBagCount.SelectedIndex = lst_PlayerBag.SelectedIndex;
+                if (lst_PlayerBag.SelectedIndex != lst_PlayerBagCount.SelectedIndex)
+                {
+                    lst_PlayerBagCount.SelectedIndex = lst_PlayerBag.SelectedIndex;
+                }
+                PlayerBagItemButtonReFresh(lst_PlayerBag.SelectedIndex);
             }
-            PlayerBagItemButtonReFresh(lst_PlayerBag.SelectedIndex);
         }
 
         private void lst_PlayerBagCount_SelectedIndexChanged(object sender, EventArgs e)
@@ -293,6 +296,20 @@ namespace 圣灵之战pre_alpha_4
             frm_Shop.ShowDialog();
             PlayerDataReFresh();
             PlayerBagReFresh();
+        }
+        private void But_UsefulButton_Click(object sender, EventArgs e)
+        {
+            switch (((Button)sender).Text)//判断,调用对话框
+            {
+                case "出售":
+                    break;
+                case "使用":
+                    break;
+                case "烹饪":
+                    break;
+                case "装备":
+                    break;
+            }
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.Windows.Forms;
+using Index_Contorl_Library;
 namespace 圣灵之战pre_alpha_4
 {
     partial class frm_Main
@@ -616,6 +617,7 @@ namespace 圣灵之战pre_alpha_4
             this.but_UsefulButton_4.TabIndex = 6;
             this.but_UsefulButton_4.UseVisualStyleBackColor = true;
             this.but_UsefulButton_4.Visible = false;
+            this.but_UsefulButton_4.Click += new System.EventHandler(this.But_UsefulButton_Click);
             // 
             // but_UsefulButton_3
             // 
@@ -625,6 +627,7 @@ namespace 圣灵之战pre_alpha_4
             this.but_UsefulButton_3.TabIndex = 6;
             this.but_UsefulButton_3.UseVisualStyleBackColor = true;
             this.but_UsefulButton_3.Visible = false;
+            this.but_UsefulButton_3.Click += new System.EventHandler(this.But_UsefulButton_Click);
             // 
             // but_UsefulButton_2
             // 
@@ -634,6 +637,7 @@ namespace 圣灵之战pre_alpha_4
             this.but_UsefulButton_2.TabIndex = 6;
             this.but_UsefulButton_2.UseVisualStyleBackColor = true;
             this.but_UsefulButton_2.Visible = false;
+            this.but_UsefulButton_2.Click += new System.EventHandler(this.But_UsefulButton_Click);
             // 
             // but_UsefulButton_1
             // 
@@ -643,6 +647,7 @@ namespace 圣灵之战pre_alpha_4
             this.but_UsefulButton_1.TabIndex = 6;
             this.but_UsefulButton_1.UseVisualStyleBackColor = true;
             this.but_UsefulButton_1.Visible = false;
+            this.but_UsefulButton_1.Click += new System.EventHandler(this.But_UsefulButton_Click);
             // 
             // but_Shop
             // 
@@ -848,7 +853,7 @@ namespace 圣灵之战pre_alpha_4
             this.MainMenuStrip = this.m_Main;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frm_Main";
-            this.Text = "圣灵之战pre_Alpha_3";
+            this.Text = "圣灵之战pre_Alpha_4";
             this.Load += new System.EventHandler(this.frm_Main_Load);
             this.m_Main.ResumeLayout(false);
             this.m_Main.PerformLayout();
