@@ -12,7 +12,7 @@ namespace 圣灵之战pre_alpha_4._Form_Dialog
             item = PlayerValue.Items.GetItem(index);
         }
         readonly int index;
-        Item item;
+        readonly Item item;
         private void Frm_Sell_Load(object sender, EventArgs e)
         {
             Text = "出售[" + item.Name + "]";

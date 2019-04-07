@@ -92,7 +92,22 @@ namespace 圣灵之战pre_alpha_4
                         return "精准";
                 }
                 return "";
-
+            }
+        }
+        public static class AdditiveName
+        {
+            public static string GetAdditiveName(string key)
+            {
+                switch (key)
+                {
+                    case "PP":
+                        return "体力";
+                    case "DF":
+                        return "防御";
+                    case "HP":
+                        return "生命";
+                }
+                return "";
             }
         }
     }

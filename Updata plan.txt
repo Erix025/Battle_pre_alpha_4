@@ -1,0 +1,8 @@
+#M1 Old Function 
+	#S1 Player Sence
+		#T1 PlayerBag Button Function
+			#ST1 Shop Sence
+			#ST2 Sell Sence
+			#ST3 Use Sence
+	#S2 Fight Sence
+#M2 New Function

@@ -99,6 +99,28 @@ namespace 圣灵之战pre_alpha_4
                 }
                 return 0;
             }
+            public void AddHp(int number)
+            {
+                if (HP + number > GetAttribute(AttributeValue.HP))
+                {
+                    HP = GetAttribute(AttributeValue.HP);
+                }
+                else
+                {
+                    HP += number;
+                }
+            }
+            public void AddPP(int number)
+            {
+                if (PP + number > PP_Max)
+                {
+                    PP = PP_Max;
+                }
+                else
+                {
+                    PP += number;
+                }
+            }
             public Player()
             {
                 PP_Max = 50;

@@ -66,6 +66,7 @@ namespace 圣灵之战pre_alpha_4
                 lst_PlayerBag.Items.Add(tem.Name);
                 lst_PlayerBagCount.Items.Add(tem.Number);
             }
+            PlayerBagItemButtonReFresh(-1);
         }
         private void Frm_Main_Load(object sender, EventArgs e)
         {
@@ -130,48 +131,51 @@ namespace 圣灵之战pre_alpha_4
             but_UsefulButton_3.Visible = false;
             but_UsefulButton_4.Visible = false;
             //查找tybe
-            string tybe = "";
-            foreach (Additive tem in PlayerValue.Items.GetItem(index).Additives.GetArray())
+            if (index != -1)
             {
-                if (tem.Key == "T")
+                string tybe = "";
+                foreach (Additive tem in PlayerValue.Items.GetItem(index).Additives.GetArray())
                 {
-                    tybe = tem.Value;
-                    break;
+                    if (tem.Key == "T")
+                    {
+                        tybe = tem.Value;
+                        break;
+                    }
                 }
-            }
-            switch (tybe)   //显示按钮
-            {
-                case "i":
-                    but_UsefulButton_1.Text = "出售";
-                    but_UsefulButton_1.Visible = true;
-                    break;
-                case "rf":
-                    but_UsefulButton_1.Text = "出售";
-                    but_UsefulButton_1.Visible = true;
-                    but_UsefulButton_2.Text = "烹饪";
-                    but_UsefulButton_2.Visible = true;
-                    break;
-                case "ui":
-                    but_UsefulButton_1.Text = "出售";
-                    but_UsefulButton_1.Visible = true;
-                    but_UsefulButton_2.Text = "使用";
-                    but_UsefulButton_2.Visible = true;
-                    break;
-                case "e0":
-                case "e1":
-                case "e2":
-                case "e3":
-                case "e4":
-                case "e5":
-                case "e6":
-                case "e7":
-                case "e8":
-                case "e9":
-                    but_UsefulButton_1.Text = "出售";
-                    but_UsefulButton_1.Visible = true;
-                    but_UsefulButton_2.Text = "装备";
-                    but_UsefulButton_2.Visible = true;
-                    break;
+                switch (tybe)   //显示按钮
+                {
+                    case "i":
+                        but_UsefulButton_1.Text = "出售";
+                        but_UsefulButton_1.Visible = true;
+                        break;
+                    case "rf":
+                        but_UsefulButton_1.Text = "出售";
+                        but_UsefulButton_1.Visible = true;
+                        but_UsefulButton_2.Text = "烹饪";
+                        but_UsefulButton_2.Visible = true;
+                        break;
+                    case "ui":
+                        but_UsefulButton_1.Text = "出售";
+                        but_UsefulButton_1.Visible = true;
+                        but_UsefulButton_2.Text = "使用";
+                        but_UsefulButton_2.Visible = true;
+                        break;
+                    case "e0":
+                    case "e1":
+                    case "e2":
+                    case "e3":
+                    case "e4":
+                    case "e5":
+                    case "e6":
+                    case "e7":
+                    case "e8":
+                    case "e9":
+                        but_UsefulButton_1.Text = "出售";
+                        but_UsefulButton_1.Visible = true;
+                        but_UsefulButton_2.Text = "装备";
+                        but_UsefulButton_2.Visible = true;
+                        break;
+                }
             }
         }
         private void But_Player_HP_Add_Click(object sender, EventArgs e)
@@ -292,7 +296,7 @@ namespace 圣灵之战pre_alpha_4
         private void But_Shop_Click(object sender, EventArgs e)
         {
             //商城界面
-            frm_Shop frm_Shop = new frm_Shop();
+            Frm_Shop frm_Shop = new Frm_Shop();
             frm_Shop.ShowDialog();
             PlayerDataReFresh();
             PlayerBagReFresh();
@@ -308,6 +312,10 @@ namespace 圣灵之战pre_alpha_4
                     PlayerBagReFresh();
                     break;
                 case "使用":
+                    frm_Use frm_Use = new frm_Use(lst_PlayerBag.SelectedIndex);
+                    frm_Use.ShowDialog();
+                    PlayerDataReFresh();
+                    PlayerBagReFresh();
                     break;
                 case "烹饪":
                     break;

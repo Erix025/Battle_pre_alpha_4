@@ -1,7 +1,7 @@
 ﻿using System.Windows.Forms;
 namespace 圣灵之战pre_alpha_4._Form_Dialog
 {
-    partial class frm_Shop
+    partial class Frm_Shop
     {
         /// <summary>
         /// Required designer variable.
@@ -48,7 +48,7 @@ namespace 圣灵之战pre_alpha_4._Form_Dialog
             this.lst_CommodityName.Name = "lst_CommodityName";
             this.lst_CommodityName.Size = new System.Drawing.Size(206, 372);
             this.lst_CommodityName.TabIndex = 0;
-            this.lst_CommodityName.SelectedIndexChanged += new System.EventHandler(this.lst_commodityName_SelectedIndexChanged);
+            this.lst_CommodityName.SelectedIndexChanged += new System.EventHandler(this.Lst_commodityName_SelectedIndexChanged);
             // 
             // lst_CommodityPrize
             // 
@@ -59,7 +59,7 @@ namespace 圣灵之战pre_alpha_4._Form_Dialog
             this.lst_CommodityPrize.Name = "lst_CommodityPrize";
             this.lst_CommodityPrize.Size = new System.Drawing.Size(63, 372);
             this.lst_CommodityPrize.TabIndex = 1;
-            this.lst_CommodityPrize.SelectedIndexChanged += new System.EventHandler(this.lst_CommodityPrize_SelectedIndexChanged);
+            this.lst_CommodityPrize.SelectedIndexChanged += new System.EventHandler(this.Lst_CommodityPrize_SelectedIndexChanged);
             // 
             // lab_PlayerMoney
             // 
@@ -97,7 +97,7 @@ namespace 圣灵之战pre_alpha_4._Form_Dialog
             this.but_Canel.TabIndex = 8;
             this.but_Canel.Text = "取消";
             this.but_Canel.UseVisualStyleBackColor = true;
-            this.but_Canel.Click += new System.EventHandler(this.but_Canel_Click);
+            this.but_Canel.Click += new System.EventHandler(this.But_Canel_Click);
             // 
             // but_Buy
             // 
@@ -109,7 +109,7 @@ namespace 圣灵之战pre_alpha_4._Form_Dialog
             this.but_Buy.TabIndex = 9;
             this.but_Buy.Text = "购买";
             this.but_Buy.UseVisualStyleBackColor = true;
-            this.but_Buy.Click += new System.EventHandler(this.but_Buy_Click);
+            this.but_Buy.Click += new System.EventHandler(this.But_Buy_Click);
             // 
             // icnc_Main
             // 
@@ -140,7 +140,7 @@ namespace 圣灵之战pre_alpha_4._Form_Dialog
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "frm_Shop";
             this.Text = "商店";
-            this.Load += new System.EventHandler(this.frm_Shop_Load);
+            this.Load += new System.EventHandler(this.Frm_Shop_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

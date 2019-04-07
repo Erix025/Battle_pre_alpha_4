@@ -3,15 +3,15 @@ using System.Windows.Forms;
 using 圣灵之战pre_alpha_4.Variable;
 namespace 圣灵之战pre_alpha_4._Form_Dialog
 {
-    public partial class frm_Shop : Form
+    public partial class Frm_Shop : Form
     {
         Commodity commodity;
-        public frm_Shop()
+        public Frm_Shop()
         {
             InitializeComponent();
         }
 
-        private void frm_Shop_Load(object sender, EventArgs e)
+        private void Frm_Shop_Load(object sender, EventArgs e)
         {
             lab_PlayerMoney.Text = "当前拥有金钱：" + PlayerValue.Player.Money.ToString() + "$";
             foreach (Commodity tem in GameValue.Commodities.GetArray())
@@ -20,7 +20,7 @@ namespace 圣灵之战pre_alpha_4._Form_Dialog
                 lst_CommodityPrize.Items.Add(tem.Prize);
             }
         }
-        private void lst_commodityName_SelectedIndexChanged(object sender, EventArgs e)
+        private void Lst_commodityName_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (lst_CommodityName.SelectedIndex != -1)
             {
@@ -44,7 +44,7 @@ namespace 圣灵之战pre_alpha_4._Form_Dialog
             }
         }
 
-        private void lst_CommodityPrize_SelectedIndexChanged(object sender, EventArgs e)
+        private void Lst_CommodityPrize_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (lst_CommodityPrize.SelectedIndex != -1 &&
                 lst_CommodityName.SelectedIndex != lst_CommodityPrize.SelectedIndex)
@@ -53,12 +53,12 @@ namespace 圣灵之战pre_alpha_4._Form_Dialog
             }
         }
 
-        private void but_Canel_Click(object sender, EventArgs e)
+        private void But_Canel_Click(object sender, EventArgs e)
         {
             Dispose();
         }
 
-        private void but_Buy_Click(object sender, EventArgs e)
+        private void But_Buy_Click(object sender, EventArgs e)
         {
             PlayerValue.Player.Money -= icnc_Main.Number * commodity.Prize;
             PlayerValue.Items.Add(commodity.ID, icnc_Main.Number);

@@ -88,12 +88,6 @@
     <Compile Include="[Form]Dialog\frm_CreatePlayer.Designer.cs">
       <DependentUpon>frm_CreatePlayer.cs</DependentUpon>
     </Compile>
-    <Compile Include="[Form]Dialog\frm_Delete.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="[Form]Dialog\frm_Delete.Designer.cs">
-      <DependentUpon>frm_Delete.cs</DependentUpon>
-    </Compile>
     <Compile Include="[Form]Dialog\frm_Fighting.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -181,6 +175,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="[Form]Dialog\frm_Shop.resx">
       <DependentUpon>frm_Shop.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="[Form]Dialog\frm_Use.resx">
+      <DependentUpon>frm_Use.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
