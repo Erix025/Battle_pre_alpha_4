@@ -22,23 +22,25 @@ namespace 圣灵之战pre_alpha_4._Form_Dialog
         }
         private void lst_commodityName_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (lst_CommodityName.SelectedIndex != -1 &&
-                lst_CommodityName.SelectedIndex != lst_CommodityPrize.SelectedIndex)
+            if (lst_CommodityName.SelectedIndex != -1)
             {
-                lst_CommodityPrize.SelectedIndex = lst_CommodityName.SelectedIndex;
-            }
-            commodity = GameValue.Commodities.GetArray()[lst_CommodityName.SelectedIndex];
-            lab_CommodityInfo.Text = commodity.Info;
-            if (commodity.Prize > PlayerValue.Player.Money)
-            {
-                lab_PreView.Text = "您太穷了，请赚够钱再来。";
-                but_Buy.Enabled = false;
-            }
-            else
-            {
-                icnc_Main.SetMax( PlayerValue.Player.Money / commodity.Prize);
-                icnc_Main.Enabled = true;
-                but_Buy.Enabled = true;
+                if (lst_CommodityName.SelectedIndex != lst_CommodityPrize.SelectedIndex)
+                {
+                    lst_CommodityPrize.SelectedIndex = lst_CommodityName.SelectedIndex;
+                }
+                commodity = GameValue.Commodities.GetArray()[lst_CommodityName.SelectedIndex];
+                lab_CommodityInfo.Text = commodity.Info;
+                if (commodity.Prize > PlayerValue.Player.Money)
+                {
+                    lab_PreView.Text = "您太穷了，请赚够钱再来。";
+                    but_Buy.Enabled = false;
+                }
+                else
+                {
+                    icnc_Main.SetMax(PlayerValue.Player.Money / commodity.Prize);
+                    icnc_Main.Enabled = true;
+                    but_Buy.Enabled = true;
+                }
             }
         }
 
@@ -59,7 +61,7 @@ namespace 圣灵之战pre_alpha_4._Form_Dialog
         private void but_Buy_Click(object sender, EventArgs e)
         {
             PlayerValue.Player.Money -= icnc_Main.Number * commodity.Prize;
-            PlayerValue.Items.Add(new Item(commodity.ID, icnc_Main.Number));
+            PlayerValue.Items.Add(commodity.ID, icnc_Main.Number);
             Dispose();
         }
         private void Icnc_Main_NumberChanged(object sender, EventArgs e)
