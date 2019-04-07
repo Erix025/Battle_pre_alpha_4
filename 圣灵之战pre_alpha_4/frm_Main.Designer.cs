@@ -158,7 +158,7 @@ namespace 圣灵之战pre_alpha_4
             this.m_DebugExit.Name = "m_DebugExit";
             this.m_DebugExit.Size = new System.Drawing.Size(88, 32);
             this.m_DebugExit.Text = "调试退出";
-            this.m_DebugExit.Click += new System.EventHandler(this.m_DebugExit_Click);
+            this.m_DebugExit.Click += new System.EventHandler(this.DebugExit_Click);
             // 
             // m_Exit
             // 
@@ -208,7 +208,7 @@ namespace 圣灵之战pre_alpha_4
             this.but_PlayerPrecise_Add.TabIndex = 26;
             this.but_PlayerPrecise_Add.Text = "+";
             this.but_PlayerPrecise_Add.UseVisualStyleBackColor = true;
-            this.but_PlayerPrecise_Add.Click += new System.EventHandler(this.but_PlayerPrecise_Add_Click);
+            this.but_PlayerPrecise_Add.Click += new System.EventHandler(this.But_PlayerPrecise_Add_Click);
             // 
             // but_PlayerAgile_Add
             // 
@@ -218,7 +218,7 @@ namespace 圣灵之战pre_alpha_4
             this.but_PlayerAgile_Add.TabIndex = 26;
             this.but_PlayerAgile_Add.Text = "+";
             this.but_PlayerAgile_Add.UseVisualStyleBackColor = true;
-            this.but_PlayerAgile_Add.Click += new System.EventHandler(this.but_PlayerAgile_Add_Click);
+            this.but_PlayerAgile_Add.Click += new System.EventHandler(this.But_PlayerAgile_Add_Click);
             // 
             // but_PlayerDefense_Add
             // 
@@ -228,7 +228,7 @@ namespace 圣灵之战pre_alpha_4
             this.but_PlayerDefense_Add.TabIndex = 26;
             this.but_PlayerDefense_Add.Text = "+";
             this.but_PlayerDefense_Add.UseVisualStyleBackColor = true;
-            this.but_PlayerDefense_Add.Click += new System.EventHandler(this.but_PlayerDefense_Add_Click);
+            this.but_PlayerDefense_Add.Click += new System.EventHandler(this.But_PlayerDefense_Add_Click);
             // 
             // but_PlayerPower_Add
             // 
@@ -238,7 +238,7 @@ namespace 圣灵之战pre_alpha_4
             this.but_PlayerPower_Add.TabIndex = 26;
             this.but_PlayerPower_Add.Text = "+";
             this.but_PlayerPower_Add.UseVisualStyleBackColor = true;
-            this.but_PlayerPower_Add.Click += new System.EventHandler(this.but_PlayerPower_Add_Click);
+            this.but_PlayerPower_Add.Click += new System.EventHandler(this.But_PlayerPower_Add_Click);
             // 
             // but_Player_HP_Add
             // 
@@ -248,7 +248,7 @@ namespace 圣灵之战pre_alpha_4
             this.but_Player_HP_Add.TabIndex = 26;
             this.but_Player_HP_Add.Text = "+";
             this.but_Player_HP_Add.UseVisualStyleBackColor = true;
-            this.but_Player_HP_Add.Click += new System.EventHandler(this.but_Player_HP_Add_Click);
+            this.but_Player_HP_Add.Click += new System.EventHandler(this.But_Player_HP_Add_Click);
             // 
             // lab_PlayerTalentPoints
             // 
@@ -462,7 +462,7 @@ namespace 圣灵之战pre_alpha_4
             this.but_TakeOffEquipment.UseCompatibleTextRendering = true;
             this.but_TakeOffEquipment.UseVisualStyleBackColor = true;
             this.but_TakeOffEquipment.Visible = false;
-            this.but_TakeOffEquipment.Click += new System.EventHandler(this.but_TakeOffEquipment_Click);
+            this.but_TakeOffEquipment.Click += new System.EventHandler(this.But_TakeOffEquipment_Click);
             // 
             // lab_EquipmentInfo
             // 
@@ -482,7 +482,7 @@ namespace 圣灵之战pre_alpha_4
             this.rad_Equipment_10.TabIndex = 0;
             this.rad_Equipment_10.Text = "主武器:\r\n未装备";
             this.rad_Equipment_10.UseVisualStyleBackColor = true;
-            this.rad_Equipment_10.CheckedChanged += new System.EventHandler(this.rad_Equipments_Click);
+            this.rad_Equipment_10.CheckedChanged += new System.EventHandler(this.Rad_Equipments_Click);
             // 
             // rad_Equipment_9
             // 
@@ -494,7 +494,7 @@ namespace 圣灵之战pre_alpha_4
             this.rad_Equipment_9.TabIndex = 0;
             this.rad_Equipment_9.Text = "主武器:\r\n未装备";
             this.rad_Equipment_9.UseVisualStyleBackColor = true;
-            this.rad_Equipment_9.CheckedChanged += new System.EventHandler(this.rad_Equipments_Click);
+            this.rad_Equipment_9.CheckedChanged += new System.EventHandler(this.Rad_Equipments_Click);
             // 
             // rad_Equipment_7
             // 
@@ -506,7 +506,7 @@ namespace 圣灵之战pre_alpha_4
             this.rad_Equipment_7.TabIndex = 0;
             this.rad_Equipment_7.Text = "主武器:\r\n未装备";
             this.rad_Equipment_7.UseVisualStyleBackColor = true;
-            this.rad_Equipment_7.CheckedChanged += new System.EventHandler(this.rad_Equipments_Click);
+            this.rad_Equipment_7.CheckedChanged += new System.EventHandler(this.Rad_Equipments_Click);
             // 
             // rad_Equipment_8
             // 
@@ -518,7 +518,7 @@ namespace 圣灵之战pre_alpha_4
             this.rad_Equipment_8.TabIndex = 0;
             this.rad_Equipment_8.Text = "主武器:\r\n未装备";
             this.rad_Equipment_8.UseVisualStyleBackColor = true;
-            this.rad_Equipment_8.CheckedChanged += new System.EventHandler(this.rad_Equipments_Click);
+            this.rad_Equipment_8.CheckedChanged += new System.EventHandler(this.Rad_Equipments_Click);
             // 
             // rad_Equipment_6
             // 
@@ -530,7 +530,7 @@ namespace 圣灵之战pre_alpha_4
             this.rad_Equipment_6.TabIndex = 0;
             this.rad_Equipment_6.Text = "主武器:\r\n未装备";
             this.rad_Equipment_6.UseVisualStyleBackColor = true;
-            this.rad_Equipment_6.CheckedChanged += new System.EventHandler(this.rad_Equipments_Click);
+            this.rad_Equipment_6.CheckedChanged += new System.EventHandler(this.Rad_Equipments_Click);
             // 
             // rad_Equipment_5
             // 
@@ -542,7 +542,7 @@ namespace 圣灵之战pre_alpha_4
             this.rad_Equipment_5.TabIndex = 0;
             this.rad_Equipment_5.Text = "主武器:\r\n未装备";
             this.rad_Equipment_5.UseVisualStyleBackColor = true;
-            this.rad_Equipment_5.CheckedChanged += new System.EventHandler(this.rad_Equipments_Click);
+            this.rad_Equipment_5.CheckedChanged += new System.EventHandler(this.Rad_Equipments_Click);
             // 
             // rad_Equipment_3
             // 
@@ -554,7 +554,7 @@ namespace 圣灵之战pre_alpha_4
             this.rad_Equipment_3.TabIndex = 0;
             this.rad_Equipment_3.Text = "主武器:\r\n未装备";
             this.rad_Equipment_3.UseVisualStyleBackColor = true;
-            this.rad_Equipment_3.CheckedChanged += new System.EventHandler(this.rad_Equipments_Click);
+            this.rad_Equipment_3.CheckedChanged += new System.EventHandler(this.Rad_Equipments_Click);
             // 
             // rad_Equipment_4
             // 
@@ -566,7 +566,7 @@ namespace 圣灵之战pre_alpha_4
             this.rad_Equipment_4.TabIndex = 0;
             this.rad_Equipment_4.Text = "主武器:\r\n未装备";
             this.rad_Equipment_4.UseVisualStyleBackColor = true;
-            this.rad_Equipment_4.CheckedChanged += new System.EventHandler(this.rad_Equipments_Click);
+            this.rad_Equipment_4.CheckedChanged += new System.EventHandler(this.Rad_Equipments_Click);
             // 
             // rad_Equipment_2
             // 
@@ -578,7 +578,7 @@ namespace 圣灵之战pre_alpha_4
             this.rad_Equipment_2.TabIndex = 0;
             this.rad_Equipment_2.Text = "主武器:\r\n未装备";
             this.rad_Equipment_2.UseVisualStyleBackColor = true;
-            this.rad_Equipment_2.CheckedChanged += new System.EventHandler(this.rad_Equipments_Click);
+            this.rad_Equipment_2.CheckedChanged += new System.EventHandler(this.Rad_Equipments_Click);
             // 
             // rad_Equipment_1
             // 
@@ -590,7 +590,7 @@ namespace 圣灵之战pre_alpha_4
             this.rad_Equipment_1.TabIndex = 0;
             this.rad_Equipment_1.Text = "主武器:\r\n未装备";
             this.rad_Equipment_1.UseVisualStyleBackColor = true;
-            this.rad_Equipment_1.CheckedChanged += new System.EventHandler(this.rad_Equipments_Click);
+            this.rad_Equipment_1.CheckedChanged += new System.EventHandler(this.Rad_Equipments_Click);
             // 
             // gb_PlayerBag
             // 
@@ -657,7 +657,7 @@ namespace 圣灵之战pre_alpha_4
             this.but_Shop.TabIndex = 6;
             this.but_Shop.Text = "商城";
             this.but_Shop.UseVisualStyleBackColor = true;
-            this.but_Shop.Click += new System.EventHandler(this.but_Shop_Click);
+            this.but_Shop.Click += new System.EventHandler(this.But_Shop_Click);
             // 
             // lab_BagItemsInfo
             // 
@@ -674,7 +674,7 @@ namespace 圣灵之战pre_alpha_4
             this.lst_PlayerBagCount.Name = "lst_PlayerBagCount";
             this.lst_PlayerBagCount.Size = new System.Drawing.Size(40, 292);
             this.lst_PlayerBagCount.TabIndex = 1;
-            this.lst_PlayerBagCount.SelectedIndexChanged += new System.EventHandler(this.lst_PlayerBagCount_SelectedIndexChanged);
+            this.lst_PlayerBagCount.SelectedIndexChanged += new System.EventHandler(this.Lst_PlayerBagCount_SelectedIndexChanged);
             // 
             // lst_PlayerBag
             // 
@@ -684,7 +684,7 @@ namespace 圣灵之战pre_alpha_4
             this.lst_PlayerBag.Name = "lst_PlayerBag";
             this.lst_PlayerBag.Size = new System.Drawing.Size(177, 292);
             this.lst_PlayerBag.TabIndex = 0;
-            this.lst_PlayerBag.SelectedIndexChanged += new System.EventHandler(this.lst_PlayerBag_SelectedIndexChanged);
+            this.lst_PlayerBag.SelectedIndexChanged += new System.EventHandler(this.Lst_PlayerBag_SelectedIndexChanged);
             // 
             // gb_Place
             // 
@@ -854,7 +854,7 @@ namespace 圣灵之战pre_alpha_4
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frm_Main";
             this.Text = "圣灵之战pre_Alpha_4";
-            this.Load += new System.EventHandler(this.frm_Main_Load);
+            this.Load += new System.EventHandler(this.Frm_Main_Load);
             this.m_Main.ResumeLayout(false);
             this.m_Main.PerformLayout();
             this.gb_Attribute.ResumeLayout(false);

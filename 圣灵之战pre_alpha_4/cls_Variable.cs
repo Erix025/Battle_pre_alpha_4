@@ -479,7 +479,7 @@ namespace 圣灵之战pre_alpha_4
                 //删除元素
                 items[index] = null;
                 //重排元素
-                for (int i = index; i < Total; i++)
+                for (int i = index; i + i < Total; i++)
                 {
                     items[i] = items[i + 1];
                 }
@@ -490,6 +490,24 @@ namespace 圣灵之战pre_alpha_4
                 for (int i = 0; i < Total; i++)
                 {
                     items[i] = tem[i];
+                }
+            }
+            public void Reduce(int index, int number)
+            {
+                if (number <= items[index].Number)
+                {
+                    if (number == items[index].Number)
+                    {
+                        Delete(index);
+                    }
+                    else
+                    {
+                        items[index].Number -= number;
+                    }
+                }
+                else
+                {
+                    throw new IndexOutOfRangeException();
                 }
             }
             public Item GetItem(int index)
@@ -626,7 +644,7 @@ namespace 圣灵之战pre_alpha_4
                 //删除元素
                 dropItems[index] = null;
                 //重排元素
-                for (int i = index; i < Total; i++)
+                for (int i = index; i + 1 < Total; i++)
                 {
                     dropItems[i] = dropItems[i + 1];
                 }
@@ -676,7 +694,7 @@ namespace 圣灵之战pre_alpha_4
                 //删除元素
                 monsters[index] = null;
                 //重排元素
-                for (int i = index; i < Total; i++)
+                for (int i = index; i + 1 < Total; i++)
                 {
                     monsters[i] = monsters[i + 1];
                 }
@@ -726,7 +744,7 @@ namespace 圣灵之战pre_alpha_4
                 //删除元素
                 instances[index] = null;
                 //重排元素
-                for (int i = index; i < Total; i++)
+                for (int i = index; i + 1 < Total; i++)
                 {
                     instances[i] = instances[i + 1];
                 }
@@ -775,7 +793,7 @@ namespace 圣灵之战pre_alpha_4
                 //删除元素
                 commodities[index] = null;
                 //重排元素
-                for (int i = index; i < Total; i++)
+                for (int i = index; i + 1 < Total; i++)
                 {
                     commodities[i] = commodities[i + 1];
                 }
@@ -824,7 +842,7 @@ namespace 圣灵之战pre_alpha_4
                 //删除元素
                 NPCs[index] = null;
                 //重排元素
-                for (int i = index; i < Total; i++)
+                for (int i = index; i + 1 < Total; i++)
                 {
                     NPCs[i] = NPCs[i + 1];
                 }
@@ -873,7 +891,7 @@ namespace 圣灵之战pre_alpha_4
                 //删除元素
                 places[index] = null;
                 //重排元素
-                for (int i = index; i < Total; i++)
+                for (int i = index; i + 1 < Total; i++)
                 {
                     places[i] = places[i + 1];
                 }
@@ -922,7 +940,7 @@ namespace 圣灵之战pre_alpha_4
                 //删除元素
                 rewards[index] = null;
                 //重排元素
-                for (int i = index; i < Total; i++)
+                for (int i = index; i + 1 < Total; i++)
                 {
                     rewards[i] = rewards[i + 1];
                 }
@@ -971,7 +989,7 @@ namespace 圣灵之战pre_alpha_4
                 //删除元素
                 requirements[index] = null;
                 //重排元素
-                for (int i = index; i < Total; i++)
+                for (int i = index; i + 1 < Total; i++)
                 {
                     requirements[i] = requirements[i + 1];
                 }
@@ -1020,7 +1038,7 @@ namespace 圣灵之战pre_alpha_4
                 //删除元素
                 players[index] = null;
                 //重排元素
-                for (int i = index; i < Total - 1; i++)
+                for (int i = index; i + 1 < Total - 1; i++)
                 {
                     players[i] = players[i + 1];
                 }

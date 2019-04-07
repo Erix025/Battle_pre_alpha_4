@@ -176,6 +176,9 @@
     <EmbeddedResource Include="[Form]Dialog\frm_Fighting.resx">
       <DependentUpon>frm_Fighting.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="[Form]Dialog\frm_Sell.resx">
+      <DependentUpon>frm_Sell.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="[Form]Dialog\frm_Shop.resx">
       <DependentUpon>frm_Shop.cs</DependentUpon>
     </EmbeddedResource>

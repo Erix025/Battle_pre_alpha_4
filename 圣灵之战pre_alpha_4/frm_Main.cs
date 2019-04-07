@@ -67,7 +67,7 @@ namespace 圣灵之战pre_alpha_4
                 lst_PlayerBagCount.Items.Add(tem.Number);
             }
         }
-        private void frm_Main_Load(object sender, EventArgs e)
+        private void Frm_Main_Load(object sender, EventArgs e)
         {
             rad_Equipments = new RadioButton[] {rad_Equipment_1,rad_Equipment_2,rad_Equipment_3
                 ,rad_Equipment_4,rad_Equipment_5,rad_Equipment_6,rad_Equipment_7,rad_Equipment_8,
@@ -77,7 +77,7 @@ namespace 圣灵之战pre_alpha_4
             PlayerBagReFresh();
         }
 
-        private void m_DebugExit_Click(object sender, EventArgs e)
+        private void DebugExit_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
@@ -174,28 +174,28 @@ namespace 圣灵之战pre_alpha_4
                     break;
             }
         }
-        private void but_Player_HP_Add_Click(object sender, EventArgs e)
+        private void But_Player_HP_Add_Click(object sender, EventArgs e)
         {
             AttributeTalentPointAdd(AttributeValue.HP);
         }
-        private void but_PlayerPower_Add_Click(object sender, EventArgs e)
+        private void But_PlayerPower_Add_Click(object sender, EventArgs e)
         {
             AttributeTalentPointAdd(AttributeValue.Power);
         }
-        private void but_PlayerDefense_Add_Click(object sender, EventArgs e)
+        private void But_PlayerDefense_Add_Click(object sender, EventArgs e)
         {
             AttributeTalentPointAdd(AttributeValue.Defense);
         }
-        private void but_PlayerAgile_Add_Click(object sender, EventArgs e)
+        private void But_PlayerAgile_Add_Click(object sender, EventArgs e)
         {
             AttributeTalentPointAdd(AttributeValue.Agile);
         }
-        private void but_PlayerPrecise_Add_Click(object sender, EventArgs e)
+        private void But_PlayerPrecise_Add_Click(object sender, EventArgs e)
         {
             AttributeTalentPointAdd(AttributeValue.Precise);
         }
 
-        private void but_TakeOffEquipment_Click(object sender, EventArgs e)
+        private void But_TakeOffEquipment_Click(object sender, EventArgs e)
         {
             int index = 0;
             foreach (RadioButton tem in rad_Equipments)
@@ -212,7 +212,7 @@ namespace 圣灵之战pre_alpha_4
             rad_Equipments[index].Checked = false;
             PlayerBagReFresh();
         }
-        private void rad_Equipments_Click(object sender, EventArgs e)
+        private void Rad_Equipments_Click(object sender, EventArgs e)
         {
             int index = 0;
             foreach (RadioButton tem in rad_Equipments)
@@ -268,7 +268,7 @@ namespace 圣灵之战pre_alpha_4
             }
         }
 
-        private void lst_PlayerBag_SelectedIndexChanged(object sender, EventArgs e)
+        private void Lst_PlayerBag_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (lst_PlayerBag.SelectedIndex != -1 )
             {
@@ -280,7 +280,7 @@ namespace 圣灵之战pre_alpha_4
             }
         }
 
-        private void lst_PlayerBagCount_SelectedIndexChanged(object sender, EventArgs e)
+        private void Lst_PlayerBagCount_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (lst_PlayerBagCount.SelectedIndex != -1 && lst_PlayerBag.SelectedIndex != lst_PlayerBagCount.SelectedIndex)
             {
@@ -289,7 +289,7 @@ namespace 圣灵之战pre_alpha_4
 
         }
 
-        private void but_Shop_Click(object sender, EventArgs e)
+        private void But_Shop_Click(object sender, EventArgs e)
         {
             //商城界面
             frm_Shop frm_Shop = new frm_Shop();
@@ -302,6 +302,10 @@ namespace 圣灵之战pre_alpha_4
             switch (((Button)sender).Text)//判断,调用对话框
             {
                 case "出售":
+                    frm_Sell frm_Sell = new frm_Sell(lst_PlayerBag.SelectedIndex);
+                    frm_Sell.ShowDialog();
+                    PlayerDataReFresh();
+                    PlayerBagReFresh();
                     break;
                 case "使用":
                     break;
