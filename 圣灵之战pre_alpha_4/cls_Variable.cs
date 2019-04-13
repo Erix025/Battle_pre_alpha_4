@@ -155,6 +155,7 @@ namespace 圣灵之战pre_alpha_4
         {
             public string ID { get; set; }
             public string Name { get; set; }
+            public EquipmentTybe Tybe { get; set; }
             public Array_Additive Additives { get; set; }
             public int GetAdditive(AttributeValue tybe)
             {
@@ -180,6 +181,7 @@ namespace 圣灵之战pre_alpha_4
                 }
                 Name = tem_Item.Name;
                 Additives = tem_Item.Additives;
+                Tybe = EquipmentName.GetEquipmentTybe(Additives.GetAdditive(0).Value);
                 this.ID = ID;
             }
         }
@@ -484,7 +486,7 @@ namespace 圣灵之战pre_alpha_4
                 {
                     if (tem.ID == i_ID)
                     {
-                        tem.Number = tem.Number + i_number;
+                        tem.Number += i_number;
                         items[i] = tem;
                         return;
                     }
@@ -572,7 +574,7 @@ namespace 圣灵之战pre_alpha_4
         }
         public class Array_Equipment
         {
-            private Equipment[] Equipments = new Equipment[10];
+            private readonly Equipment[] Equipments = new Equipment[10];
             private int Total = 0;
             public void SetEquipment(Equipment equipment)
             {
@@ -584,14 +586,14 @@ namespace 圣灵之战pre_alpha_4
                 }
                 Equipments[index] = equipment;
             }
-            public void DeleteEquipment(int index)
+            public void DeleteEquipment(EquipmentTybe tybe)
             {
-                Equipments[index] = null;
+                Equipments[EquipmentName.GetEquipmentIndex(tybe)] = null;
                 Total--;
             }
-            public Equipment GetEquipment(int index)
+            public Equipment GetEquipment(EquipmentTybe tybe)
             {
-                return Equipments[index];
+                return Equipments[EquipmentName.GetEquipmentIndex(tybe)];
             }
             public int GetAdditiveTotal(AttributeValue Tybe)
             {

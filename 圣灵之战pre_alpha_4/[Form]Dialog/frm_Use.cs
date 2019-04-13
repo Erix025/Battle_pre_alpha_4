@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using 圣灵之战pre_alpha_4.Variable;
+using 圣灵之战pre_alpha_4.FinalValue;
 
 namespace 圣灵之战pre_alpha_4._Form_Dialog
 {
@@ -37,22 +38,12 @@ namespace 圣灵之战pre_alpha_4._Form_Dialog
             {
                 if(tem.Key.Substring(0,1) == "U")
                 {
-                    result += "  " + FinalValue.AdditiveName.GetAdditiveName(tem.Key.Substring(2)) + GetValueSymbol(icnc_Main.Number * int.Parse(tem.Value));
+                    result += "  " + FinalValue.AdditiveName.GetAdditiveName(tem.Key.Substring(2)) + Function.GetValueSymbol(icnc_Main.Number * int.Parse(tem.Value));
                 }
             }
             lab_PreView.Text = result;
         }
-        private string GetValueSymbol(int value)
-        {
-            if(value > 0)
-            {
-                return "+" + value.ToString();
-            }
-            else
-            {
-                return value.ToString();
-            }
-        }
+
 
         private void But_Confirm_Click(object sender, EventArgs e)
         {

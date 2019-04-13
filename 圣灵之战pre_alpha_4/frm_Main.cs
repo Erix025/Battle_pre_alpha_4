@@ -13,7 +13,7 @@ namespace 圣灵之战pre_alpha_4
             InitializeComponent();
         }
         private RadioButton[] rad_Equipments;
-        private void PlayerDataReFresh()
+        private void PlayerDataReFresh()    // 刷新玩家数据界面
         {
             Player player = PlayerValue.Player;
             lab_PlayerName.Text = player.Name;
@@ -39,7 +39,7 @@ namespace 圣灵之战pre_alpha_4
             tot_Player_Attribute.SetToolTip(lab_PlayerPrecise, player.TalentPoints.Precise.ToString() + "x" +
                 player.GetLv() + "+" + player.Equipments.GetAdditiveTotal(FinalValue.AttributeValue.Precise));
         }
-        private void PlayerEquipmentReFresh()
+        private void PlayerEquipmentReFresh()   //刷新玩家装备界面
         {
             Player player = PlayerValue.Player;
             int index = 0;
@@ -48,7 +48,7 @@ namespace 圣灵之战pre_alpha_4
                 if (tem != null)
                 {
                     rad_Equipments[index].Text = EquipmentName.Text[index] + "：" + "\r\n" +
-                    player.Equipments.GetEquipment(index).Name;
+                    player.Equipments.GetEquipment(EquipmentName.GetEquipmentTybe(index)).Name;
                 }
                 else
                 {
@@ -57,7 +57,7 @@ namespace 圣灵之战pre_alpha_4
                 index++;
             }
         }
-        private void PlayerBagReFresh()
+        private void PlayerBagReFresh() //刷新玩家背包界面
         {
             lst_PlayerBag.Items.Clear();
             lst_PlayerBagCount.Items.Clear();
@@ -78,11 +78,11 @@ namespace 圣灵之战pre_alpha_4
             PlayerBagReFresh();
         }
 
-        private void DebugExit_Click(object sender, EventArgs e)
+        private void DebugExit_Click(object sender, EventArgs e)    //调试退出
         {
             Application.Exit();
         }
-        private void AttributeTalentPointAdd(AttributeValue attributeValue)
+        private void AttributeTalentPointAdd(AttributeValue attributeValue) //天赋点增加函数
         {
             Player player = PlayerValue.Player;
             if (player.RemainTalentPoints != 0)
@@ -210,8 +210,8 @@ namespace 圣灵之战pre_alpha_4
                 }
                 index++;
             }
-            PlayerValue.Items.Add(new Item(PlayerValue.Player.Equipments.GetEquipment(index).ID, 1));
-            PlayerValue.Player.Equipments.DeleteEquipment(index);
+            PlayerValue.Items.Add(new Item(PlayerValue.Player.Equipments.GetEquipment(EquipmentName.GetEquipmentTybe(index)).ID, 1));
+            PlayerValue.Player.Equipments.DeleteEquipment(EquipmentName.GetEquipmentTybe(index));
             PlayerEquipmentReFresh();
             rad_Equipments[index].Checked = false;
             PlayerBagReFresh();
@@ -229,7 +229,7 @@ namespace 圣灵之战pre_alpha_4
             }
             if (rad_Equipments[index].Checked)
             {
-                if (PlayerValue.Player.Equipments.GetEquipment(index) == null)
+                if (PlayerValue.Player.Equipments.GetEquipment(EquipmentName.GetEquipmentTybe(index)) == null)
                 {
                     but_TakeOffEquipment.Visible = false;
                     lab_EquipmentInfo.Text = EquipmentName.Text[index] +
@@ -238,12 +238,19 @@ namespace 圣灵之战pre_alpha_4
                 else
                 {
                     but_TakeOffEquipment.Visible = true;
-                    lab_EquipmentInfo.Text =
-                        EquipmentName.Text[index] +
-                        "\r\n" + PlayerValue.Player.Equipments.GetEquipment(index).Name + "\r\n" +
-                        EquipmentInfoSet(AttributeValue.HP, index) + EquipmentInfoSet(AttributeValue.Power, index) +
-                        EquipmentInfoSet(AttributeValue.Defense, index) + EquipmentInfoSet(AttributeValue.Agile, index) +
-                        EquipmentInfoSet(AttributeValue.Precise, index);
+                    string tem_str = EquipmentName.Text[index] + "\r\n" +
+                    PlayerValue.Player.Equipments.GetEquipment(EquipmentName.GetEquipmentTybe(index)).Name + "\r\n";
+                    for (int i = 0; i < 6; i++)
+                    {
+                        int value = PlayerValue.Player.Equipments.GetEquipment(EquipmentName.GetEquipmentTybe(index)).
+                            GetAdditive(AttributeName.GetAttributeValue(i));
+                        if (value != 0)
+                        {
+                            tem_str += AttributeName.GetAttributeName(AttributeName.GetAttributeValue(i)) +
+                                Function.GetValueSymbol(value) + "\r\n";
+                        }
+                    }
+                    lab_EquipmentInfo.Text = tem_str;
                 }
             }
             else
@@ -252,29 +259,9 @@ namespace 圣灵之战pre_alpha_4
                 but_TakeOffEquipment.Visible = false;
             }
         }
-        private string EquipmentInfoSet(AttributeValue tybe, int index)
-        {
-            int tem = PlayerValue.Player.Equipments.GetArray()[index].GetAdditive(tybe);
-            if (tem != 0)
-            {
-                if (tem > 0)
-                {
-                    return AttributeName.GetAttributeName(tybe) + "+" + tem.ToString() + "\r\n";
-                }
-                else
-                {
-                    return AttributeName.GetAttributeName(tybe) + tem.ToString() + "\r\n";
-                }
-            }
-            else
-            {
-                return "";
-            }
-        }
-
         private void Lst_PlayerBag_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (lst_PlayerBag.SelectedIndex != -1 )
+            if (lst_PlayerBag.SelectedIndex != -1)
             {
                 if (lst_PlayerBag.SelectedIndex != lst_PlayerBagCount.SelectedIndex)
                 {
@@ -303,16 +290,17 @@ namespace 圣灵之战pre_alpha_4
         }
         private void But_UsefulButton_Click(object sender, EventArgs e)
         {
+            int index = lst_PlayerBag.SelectedIndex;
             switch (((Button)sender).Text)//判断,调用对话框
             {
                 case "出售":
-                    frm_Sell frm_Sell = new frm_Sell(lst_PlayerBag.SelectedIndex);
+                    frm_Sell frm_Sell = new frm_Sell(index);
                     frm_Sell.ShowDialog();
                     PlayerDataReFresh();
                     PlayerBagReFresh();
                     break;
                 case "使用":
-                    frm_Use frm_Use = new frm_Use(lst_PlayerBag.SelectedIndex);
+                    frm_Use frm_Use = new frm_Use(index);
                     frm_Use.ShowDialog();
                     PlayerDataReFresh();
                     PlayerBagReFresh();
@@ -320,6 +308,10 @@ namespace 圣灵之战pre_alpha_4
                 case "烹饪":
                     break;
                 case "装备":
+                    frm_Wear frm_Wear = new frm_Wear(index);
+                    frm_Wear.ShowDialog();
+                    PlayerBagReFresh();
+                    PlayerEquipmentReFresh();
                     break;
             }
         }

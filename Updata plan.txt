@@ -4,5 +4,7 @@
 			#ST1 Shop Sence
 			#ST2 Sell Sence
 			#ST3 Use Sence
+			#ST4 Wear Sence
+			#ST5 Cook Sence
 	#S2 Fight Sence
 #M2 New Function

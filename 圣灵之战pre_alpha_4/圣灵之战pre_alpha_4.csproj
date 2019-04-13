@@ -179,6 +179,9 @@
     <EmbeddedResource Include="[Form]Dialog\frm_Use.resx">
       <DependentUpon>frm_Use.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="[Form]Dialog\frm_Wear.resx">
+      <DependentUpon>frm_Wear.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
