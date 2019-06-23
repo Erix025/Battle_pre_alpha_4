@@ -10,13 +10,13 @@ namespace 圣灵之战pre_alpha_4
     static class GameValue
     {
         public static Array_Item Items { get; set; }
-        public static Array_Monster Monsters { get; set; }
-        public static Array_Instance Instances { get; set; }
-        public static Array_Commodity Commodities { get; set; }
-        public static Array_Place Places { get; set; }
-        public static Array_NPC NPCs { get; set; }
+        public static List<Monster> Monsters { get; set; }
+        public static List<Instance> Instances { get; set; }
+        public static List<Commodity> Commodities { get; set; }
+        public static List<Place> Places { get; set; }
+        public static List<NPC> NPCs { get; set; }
         public static Levels Levels { get; set; }
-        public static Array_Player Players { get; set; }
+        public static List<Player> Players { get; set; }
         private static readonly string GamePath = Environment.CurrentDirectory + "/Data/GameData/";
         private static readonly string PlayerPath = Environment.CurrentDirectory + "/Data/PlayerData/";
         public static void GameDataLoad()

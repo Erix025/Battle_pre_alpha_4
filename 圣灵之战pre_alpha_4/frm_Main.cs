@@ -290,7 +290,7 @@ namespace 圣灵之战pre_alpha_4
         }
         private void But_UsefulButton_Click(object sender, EventArgs e)
         {
-            int index = lst_PlayerBag.SelectedIndex;
+            int index = lst_PlayerBag.SelectedIndex; //传入【物品栏索引】参数
             switch (((Button)sender).Text)//判断,调用对话框
             {
                 case "出售":
@@ -306,6 +306,10 @@ namespace 圣灵之战pre_alpha_4
                     PlayerBagReFresh();
                     break;
                 case "烹饪":
+                    frm_Cook frm_Cook = new frm_Cook(index);
+                    frm_Cook.ShowDialog();
+                    PlayerBagReFresh();
+                    PlayerDataReFresh();
                     break;
                 case "装备":
                     frm_Wear frm_Wear = new frm_Wear(index);

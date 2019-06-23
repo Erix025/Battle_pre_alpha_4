@@ -164,6 +164,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="[Form]Dialog\frm_Cook.resx">
+      <DependentUpon>frm_Cook.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="[Form]Dialog\frm_CreatePlayer.resx">
       <DependentUpon>frm_CreatePlayer.cs</DependentUpon>
     </EmbeddedResource>

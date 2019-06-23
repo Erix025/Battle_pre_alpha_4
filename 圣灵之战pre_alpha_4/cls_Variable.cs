@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using 圣灵之战pre_alpha_4.FinalValue;
 using 圣灵之战pre_alpha_4.Interface;
 namespace 圣灵之战pre_alpha_4
@@ -192,7 +193,7 @@ namespace 圣灵之战pre_alpha_4
             public Attributes Attributes { get; set; }
             public int Exp { get; set; }
             public int Money { get; set; }
-            public Array_DropItem DropItems { get; set; }
+            public List<DropItem> DropItems { get; set; }
             public Monster(string i_ID, string i_Name, Attributes i_Attributes, int i_Exp, int i_Money)
             {
                 ID = i_ID;
@@ -204,7 +205,7 @@ namespace 圣灵之战pre_alpha_4
             public Monster(string i_ID)
             {
                 Monster tem_Monster = null;
-                foreach (Monster tem in GameValue.Monsters.GetArray())
+                foreach (Monster tem in GameValue.Monsters)
                 {
                     if (tem.ID == i_ID)
                     {
@@ -251,12 +252,12 @@ namespace 圣灵之战pre_alpha_4
         {
             public string ID { get; set; }
             public string Name { get; set; }
-            public Array_Monster AppendMonster { get; set; }
+            public List<Monster> AppendMonster { get; set; }
             public InstanceState State { get; set; }
             public int MonsterAppendTotal { get; set; }
             public string Info { get; set; }
             public int PP { get; set; }
-            public Instance(string i_ID, string i_Name, Array_Monster i_AppendMonster,
+            public Instance(string i_ID, string i_Name, List<Monster> i_AppendMonster,
                                         string i_Info, int i_PP, int i_MonsterAppendTotal)
             {
                 ID = i_ID;
@@ -271,7 +272,7 @@ namespace 圣灵之战pre_alpha_4
             {
                 //查找元素
                 Instance tem_instance = null;
-                foreach (Instance tem in GameValue.Instances.GetArray())
+                foreach (Instance tem in GameValue.Instances)
                 {
                     if (i_ID == tem.ID)
                     {
@@ -315,9 +316,9 @@ namespace 圣灵之战pre_alpha_4
         {
             public string ID { get; set; }
             public string Name { get; set; }
-            public Array_Instance Instances { get; set; }
-            public Array_NPC NPCs { get; set; }
-            public Place(string i_ID, string i_Name, Array_Instance i_Instances, Array_NPC i_NPCs)
+            public List<Instance> Instances { get; set; }
+            public List<NPC> NPCs { get; set; }
+            public Place(string i_ID, string i_Name, List<Instance> i_Instances, List<NPC> i_NPCs)
             {
                 ID = i_ID;
                 Name = i_Name;
@@ -327,7 +328,7 @@ namespace 圣灵之战pre_alpha_4
             public Place(string i_ID)
             {
                 Place tem_place = null;
-                foreach (Place tem in GameValue.Places.GetArray())
+                foreach (Place tem in GameValue.Places)
                 {
                     if (tem.ID == i_ID)
                     {
@@ -354,7 +355,7 @@ namespace 圣灵之战pre_alpha_4
             public NPC(string i_ID)
             {
                 NPC tem_NPC = null;
-                foreach (NPC tem in GameValue.NPCs.GetArray())
+                foreach (NPC tem in GameValue.NPCs)
                 {
                     if (tem.ID == i_ID)
                     {
@@ -373,8 +374,8 @@ namespace 圣灵之战pre_alpha_4
             public string ID { get; set; }
             public string Name { get; set; }
             public string Info { get; set; }
-            public Array_Requirement Requirements { get; set; }
-            public Array_Reward Rewards { get; set; }
+            public List<Requirement> Requirements { get; set; }
+            public List<Reward> Rewards { get; set; }
             public Mission()
             {
 
@@ -407,50 +408,61 @@ namespace 圣灵之战pre_alpha_4
         {
 
             private int Total;
-            private Additive[] addibutes;
+            private Additive[] additives;
             public Array_Additive()     //初始化
             {
                 Total = 0;
-                addibutes = new Additive[0];
+                additives = new Additive[0];
             }
             public void Add(Additive in_Additive)//添加元素
             {
                 //扩充数组
-                Additive[] tem = addibutes;
+                Additive[] tem = additives;
                 Total++;
-                addibutes = new Additive[Total];
+                additives = new Additive[Total];
                 for (int i = 0; i < Total - 1; i++)
                 {
-                    addibutes[i] = tem[i];
+                    additives[i] = tem[i];
                 }
                 //添加元素
-                addibutes[Total - 1] = in_Additive;
+                additives[Total - 1] = in_Additive;
             }
             public void Delete(int index)//删除元素
             {
                 //删除元素
-                addibutes[index] = null;
+                additives[index] = null;
                 //重排元素
                 for (int i = index; i < Total; i++)
                 {
-                    addibutes[i] = addibutes[i + 1];
+                    additives[i] = additives[i + 1];
                 }
                 //降低数组下界
-                Additive[] tem = addibutes;
+                Additive[] tem = additives;
                 Total--;
-                addibutes = new Additive[Total];
+                additives = new Additive[Total];
                 for (int i = 0; i < Total; i++)
                 {
-                    addibutes[i] = tem[i];
+                    additives[i] = tem[i];
                 }
             }
             public Additive GetAdditive(int index)//读取元素
             {
-                return addibutes[index];
+                return additives[index];
+            }
+            public Additive GetAdditive(string key)
+            {
+                foreach(Additive tem in additives)
+                {
+                    if (tem.Key == key)
+                    {
+                        return tem;
+                    }
+                }
+                throw new Exception("无法找到对象");
             }
             public Additive[] GetArray()
             {
-                return addibutes;
+                return additives;
             }
             public int GetTotal()
             {
@@ -639,451 +651,6 @@ namespace 圣灵之战pre_alpha_4
             public int Defense { get; set; }
             public int Agile { get; set; }
             public int Precise { get; set; }
-        }
-        public class Array_DropItem : IArray
-        {
-            private DropItem[] dropItems;
-            private int Total;
-            public Array_DropItem()
-            {
-                Total = 0;
-                dropItems = new DropItem[0];
-            }
-            public void Add(DropItem in_dropItem)
-            {
-                //扩充数组
-
-                DropItem[] tem = dropItems;
-                Total++;
-                dropItems = new DropItem[Total];
-                for (int i = 0; i < Total - 1; i++)
-                {
-                    dropItems[i] = tem[i];
-                }
-                //添加元素
-                dropItems[Total - 1] = in_dropItem;
-            }
-            public void Delete(int index)
-            {
-                //删除元素
-                dropItems[index] = null;
-                //重排元素
-                for (int i = index; i + 1 < Total; i++)
-                {
-                    dropItems[i] = dropItems[i + 1];
-                }
-                //降低数组下界
-                DropItem[] tem = dropItems;
-                Total--;
-                dropItems = new DropItem[Total];
-                for (int i = 0; i < Total; i++)
-                {
-                    dropItems[i] = tem[i];
-                }
-            }
-            public int GetTotal()
-            {
-                return Total;
-            }
-            public DropItem[] GetArray()
-            {
-                return dropItems;
-            }
-        }
-        public class Array_Monster : IArray
-        {
-            private Monster[] monsters;
-            private int Total;
-            public Array_Monster()
-            {
-                Total = 0;
-                monsters = new Monster[0];
-            }
-            public void Add(Monster in_Monster)
-            {
-                //扩充数组
-
-                Monster[] tem = monsters;
-                Total++;
-                monsters = new Monster[Total];
-                for (int i = 0; i < Total - 1; i++)
-                {
-                    monsters[i] = tem[i];
-                }
-                //添加元素
-                monsters[Total - 1] = in_Monster;
-            }
-            public void Delete(int index)
-            {
-                //删除元素
-                monsters[index] = null;
-                //重排元素
-                for (int i = index; i + 1 < Total; i++)
-                {
-                    monsters[i] = monsters[i + 1];
-                }
-                //降低数组下界
-                Monster[] tem = monsters;
-                Total--;
-                monsters = new Monster[Total];
-                for (int i = 0; i < Total; i++)
-                {
-                    monsters[i] = tem[i];
-                }
-            }
-            public int GetTotal()
-            {
-                return Total;
-            }
-            public Monster[] GetArray()
-            {
-                return monsters;
-            }
-        }
-        public class Array_Instance : IArray
-        {
-            private Instance[] instances;
-            private int Total;
-            public Array_Instance()
-            {
-                Total = 0;
-                instances = new Instance[0];
-            }
-            public void Add(Instance in_Instance)
-            {
-                //扩充数组
-
-                Instance[] tem = instances;
-                Total++;
-                instances = new Instance[Total];
-                for (int i = 0; i < Total - 1; i++)
-                {
-                    instances[i] = tem[i];
-                }
-                //添加元素
-                instances[Total - 1] = in_Instance;
-            }
-            public void Delete(int index)
-            {
-                //删除元素
-                instances[index] = null;
-                //重排元素
-                for (int i = index; i + 1 < Total; i++)
-                {
-                    instances[i] = instances[i + 1];
-                }
-                //降低数组下界
-                Instance[] tem = instances;
-                Total--;
-                instances = new Instance[Total];
-                for (int i = 0; i < Total; i++)
-                {
-                    instances[i] = tem[i];
-                }
-            }
-            public int GetTotal()
-            {
-                return Total;
-            }
-            public Instance[] GetArray()
-            {
-                return instances;
-            }
-        }
-        public class Array_Commodity : IArray
-        {
-            private Commodity[] commodities;
-            private int Total;
-            public Array_Commodity()
-            {
-                Total = 0;
-                commodities = new Commodity[0];
-            }
-            public void Add(Commodity in_Commodity)
-            {
-                //扩充数组
-                Commodity[] tem = commodities;
-                Total++;
-                commodities = new Commodity[Total];
-                for (int i = 0; i < Total - 1; i++)
-                {
-                    commodities[i] = tem[i];
-                }
-                //添加元素
-                commodities[Total - 1] = in_Commodity;
-            }
-            public void Delete(int index)
-            {
-                //删除元素
-                commodities[index] = null;
-                //重排元素
-                for (int i = index; i + 1 < Total; i++)
-                {
-                    commodities[i] = commodities[i + 1];
-                }
-                //降低数组下界
-                Commodity[] tem = commodities;
-                Total--;
-                commodities = new Commodity[Total];
-                for (int i = 0; i < Total; i++)
-                {
-                    commodities[i] = tem[i];
-                }
-            }
-            public int GetTotal()
-            {
-                return Total;
-            }
-            public Commodity[] GetArray()
-            {
-                return commodities;
-            }
-        }
-        public class Array_NPC : IArray
-        {
-            private NPC[] NPCs;
-            private int Total;
-            public Array_NPC()
-            {
-                Total = 0;
-                NPCs = new NPC[0];
-            }
-            public void Add(NPC in_NPC)
-            {
-                //扩充数组
-                NPC[] tem = NPCs;
-                Total++;
-                NPCs = new NPC[Total];
-                for (int i = 0; i < Total - 1; i++)
-                {
-                    NPCs[i] = tem[i];
-                }
-                //添加元素
-                NPCs[Total - 1] = in_NPC;
-            }
-            public void Delete(int index)
-            {
-                //删除元素
-                NPCs[index] = null;
-                //重排元素
-                for (int i = index; i + 1 < Total; i++)
-                {
-                    NPCs[i] = NPCs[i + 1];
-                }
-                //降低数组下界
-                NPC[] tem = NPCs;
-                Total--;
-                NPCs = new NPC[Total];
-                for (int i = 0; i < Total; i++)
-                {
-                    NPCs[i] = tem[i];
-                }
-            }
-            public int GetTotal()
-            {
-                return Total;
-            }
-            public NPC[] GetArray()
-            {
-                return NPCs;
-            }
-        }
-        public class Array_Place : IArray
-        {
-            private int Total;
-            private Place[] places;
-            public Array_Place()
-            {
-                Total = 0;
-                places = new Place[0];
-            }
-            public void Add(Place in_Place)
-            {
-                //扩充数组
-                Place[] tem = places;
-                Total++;
-                places = new Place[Total];
-                for (int i = 0; i < Total - 1; i++)
-                {
-                    places[i] = tem[i];
-                }
-                //添加元素
-                places[Total - 1] = in_Place;
-            }
-            public void Delete(int index)
-            {
-                //删除元素
-                places[index] = null;
-                //重排元素
-                for (int i = index; i + 1 < Total; i++)
-                {
-                    places[i] = places[i + 1];
-                }
-                //降低数组下界
-                Place[] tem = places;
-                Total--;
-                places = new Place[Total];
-                for (int i = 0; i < Total; i++)
-                {
-                    places[i] = tem[i];
-                }
-            }
-            public int GetTotal()
-            {
-                return Total;
-            }
-            public Place[] GetArray()
-            {
-                return places;
-            }
-        }
-        public class Array_Reward
-        {
-            private Reward[] rewards;
-            private int Total;
-            public Array_Reward()
-            {
-                rewards = new Reward[0];
-                Total = 0;
-            }
-            public void Add(Reward in_Reward)
-            {
-                //扩充数组
-                Reward[] tem = rewards;
-                Total++;
-                rewards = new Reward[Total];
-                for (int i = 0; i < Total - 1; i++)
-                {
-                    rewards[i] = tem[i];
-                }
-                //添加元素
-                rewards[Total - 1] = in_Reward;
-            }
-            public void Delete(int index)
-            {
-                //删除元素
-                rewards[index] = null;
-                //重排元素
-                for (int i = index; i + 1 < Total; i++)
-                {
-                    rewards[i] = rewards[i + 1];
-                }
-                //降低数组下界
-                Reward[] tem = rewards;
-                Total--;
-                rewards = new Reward[Total];
-                for (int i = 0; i < Total; i++)
-                {
-                    rewards[i] = tem[i];
-                }
-            }
-            public int GetTotal()
-            {
-                return Total;
-            }
-            public Reward[] GetArray()
-            {
-                return rewards;
-            }
-        }
-        public class Array_Requirement
-        {
-            private Requirement[] requirements;
-            private int Total;
-            public Array_Requirement()
-            {
-                requirements = new Requirement[0];
-                Total = 0;
-            }
-            public void Add(Requirement in_Requirement)
-            {
-                //扩充数组
-                Requirement[] tem = requirements;
-                Total++;
-                requirements = new Requirement[Total];
-                for (int i = 0; i < Total - 1; i++)
-                {
-                    requirements[i] = tem[i];
-                }
-                //添加元素
-                requirements[Total - 1] = in_Requirement;
-            }
-            public void Delete(int index)
-            {
-                //删除元素
-                requirements[index] = null;
-                //重排元素
-                for (int i = index; i + 1 < Total; i++)
-                {
-                    requirements[i] = requirements[i + 1];
-                }
-                //降低数组下界
-                Requirement[] tem = requirements;
-                Total--;
-                requirements = new Requirement[Total];
-                for (int i = 0; i < Total; i++)
-                {
-                    requirements[i] = tem[i];
-                }
-            }
-            public int GetTotal()
-            {
-                return Total;
-            }
-            public Requirement[] GetArray()
-            {
-                return requirements;
-            }
-        }
-        public class Array_Player : IArray
-        {
-            private Player[] players;
-            private int Total;
-            public Array_Player()
-            {
-                players = new Player[0];
-                Total = 0;
-            }
-            public void Add(Player in_Player)
-            {
-                //扩充数组
-                Player[] tem = players;
-                Total++;
-                players = new Player[Total];
-                for (int i = 0; i < Total - 1; i++)
-                {
-                    players[i] = tem[i];
-                }
-                //添加元素
-                players[Total - 1] = in_Player;
-            }
-            public void Delete(int index)
-            {
-                //删除元素
-                players[index] = null;
-                //重排元素
-                for (int i = index; i + 1 < Total - 1; i++)
-                {
-                    players[i] = players[i + 1];
-                }
-                //降低数组下界
-                Player[] tem = players;
-                Total--;
-                players = new Player[Total];
-                for (int i = 0; i < Total; i++)
-                {
-                    players[i] = tem[i];
-                }
-            }
-            public int GetTotal()
-            {
-                return Total;
-            }
-            public Player[] GetArray()
-            {
-                return players;
-
-            }
         }
     }
 }

@@ -14,7 +14,7 @@ namespace 圣灵之战pre_alpha_4._Form_Dialog
         private void Frm_Shop_Load(object sender, EventArgs e)
         {
             lab_PlayerMoney.Text = "当前拥有金钱：" + PlayerValue.Player.Money.ToString() + "$";
-            foreach (Commodity tem in GameValue.Commodities.GetArray())
+            foreach (Commodity tem in GameValue.Commodities)
             {
                 lst_CommodityName.Items.Add(tem.Name);
                 lst_CommodityPrize.Items.Add(tem.Prize);
@@ -28,7 +28,7 @@ namespace 圣灵之战pre_alpha_4._Form_Dialog
                 {
                     lst_CommodityPrize.SelectedIndex = lst_CommodityName.SelectedIndex;
                 }
-                commodity = GameValue.Commodities.GetArray()[lst_CommodityName.SelectedIndex];
+                commodity = GameValue.Commodities[lst_CommodityName.SelectedIndex];
                 lab_CommodityInfo.Text = commodity.Info;
                 if (commodity.Prize > PlayerValue.Player.Money)
                 {

@@ -61,14 +61,14 @@ namespace 圣灵之战pre_alpha_4
         public static void PlayerDelete(int index)
         {
             Directory.Delete(Environment.CurrentDirectory + "/Data/PlayerData/" + 
-                GameValue.Players.GetArray()[index].Name,true);
-            GameValue.Players.Delete(index);
+                GameValue.Players[index].Name,true);
+            GameValue.Players.RemoveAt(index);
             GameDataWrite.GamePlayerSave(GameValue.Players, 
                 Environment.CurrentDirectory + "/Data/PlayerData/Players.txt");
         }
         private static Player GetPlayer(string name)
         {
-            foreach(Player tem in GameValue.Players.GetArray())
+            foreach(Player tem in GameValue.Players)
             {
                 if(tem.Name == name)
                 {

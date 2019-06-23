@@ -40,7 +40,7 @@ namespace 圣灵之战pre_alpha_4._Form_Dialog
 
         private void but_Confirm_Click(object sender, EventArgs e)
         {
-            foreach(Player tem in GameValue.Players.GetArray())
+            foreach(Player tem in GameValue.Players)
             {
                 if(tem.Name == txt_PlayerName.Text)
                 {

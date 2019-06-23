@@ -24,7 +24,7 @@ namespace 圣灵之战pre_alpha_4
         {
             GameValue.GamePlayersDataLoad();
             GameValue.GameDataLoad();
-            foreach(Player tem in GameValue.Players.GetArray())
+            foreach(Player tem in GameValue.Players)
             {
                 lst_PlayerName.Items.Add(tem.Name);
             }
@@ -34,7 +34,7 @@ namespace 圣灵之战pre_alpha_4
         {
             if (lst_PlayerName.SelectedIndex != -1)
             {
-                Player player = GameValue.Players.GetArray()[lst_PlayerName.SelectedIndex];
+                Player player = GameValue.Players[lst_PlayerName.SelectedIndex];
                 lab_PlayerAttribute.Text = player.Name + "\r\n" + "Lv. " + player.GetLv();
                 but_Start.Enabled = true;
                 but_DelPlayer.Enabled = true;
@@ -56,7 +56,7 @@ namespace 圣灵之战pre_alpha_4
         {
             lst_PlayerName.Items.Clear();
             lab_PlayerAttribute.Text = "";
-            foreach(Player tem in GameValue.Players.GetArray())
+            foreach(Player tem in GameValue.Players)
             {
                 lst_PlayerName.Items.Add(tem.Name);
             }
@@ -66,7 +66,7 @@ namespace 圣灵之战pre_alpha_4
 
         private void but_Start_Click(object sender, EventArgs e)
         {
-            PlayerValue.PlayerDataLoad(GameValue.Players.GetArray()[lst_PlayerName.SelectedIndex].Name);
+            PlayerValue.PlayerDataLoad(GameValue.Players[lst_PlayerName.SelectedIndex].Name);
             frm_Main frm_Main = new frm_Main();
             frm_Main.Show();
             Dispose(false);

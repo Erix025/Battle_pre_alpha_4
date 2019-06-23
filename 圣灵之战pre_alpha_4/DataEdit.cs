@@ -2,6 +2,7 @@
 using System;
 using 圣灵之战pre_alpha_4.FinalValue;
 using 圣灵之战pre_alpha_4.Variable;
+using System.Collections.Generic;
 namespace 圣灵之战pre_alpha_4
 {
     public class GameDataRead
@@ -9,7 +10,7 @@ namespace 圣灵之战pre_alpha_4
         public static Array_Item GameItemLoad(string path)//GameItem读取
         {
             Array_Item items = new Array_Item();
-            var data_input = ReadFiles.ItemRead(path);
+            var data_input = ReadFiles.ItemRead(path,ReadFiles.ReadMode.SafeRead);
             string[] item_tybe = data_input.Item2;
             string[] item_value = data_input.Item3;
             int i = 0;
@@ -50,16 +51,16 @@ namespace 圣灵之战pre_alpha_4
             return items;
             //输出
         }
-        public static Array_Monster GameMonsterLoad(string path)
+        public static List<Monster> GameMonsterLoad(string path)
         {
-            var data_input = ReadFiles.ItemRead(path);
+            var data_input = ReadFiles.ItemRead(path,ReadFiles.ReadMode.SafeRead);
             string[] item_tybe = data_input.Item2;
             string[] item_value = data_input.Item3;
             int i = 0;
-            Array_Monster monsters = new Array_Monster();
+            List<Monster> monsters = new List<Monster>();
             Monster monster = new Monster();
             Attributes attributes = new Attributes();
-            Array_DropItem dropItems = new Array_DropItem();
+            List<DropItem> dropItems = new List<DropItem>();
             foreach (string tem in item_tybe)
             {
                 switch (tem)
@@ -67,7 +68,7 @@ namespace 圣灵之战pre_alpha_4
                     case "monster_id":
                         monster = new Monster();
                         attributes = new Attributes();
-                        dropItems = new Array_DropItem();
+                        dropItems = new List<DropItem>();
                         monster.ID = item_value[i];
                         break;
                     case "monster_name":
@@ -108,15 +109,15 @@ namespace 圣灵之战pre_alpha_4
             }
             return monsters;
         }
-        public static Array_Instance GameInstanceLoad(string path)
+        public static List<Instance> GameInstanceLoad(string path)
         {
-            var data_input = ReadFiles.ItemRead(path);
-            Array_Instance instances = new Array_Instance();
+            var data_input = ReadFiles.ItemRead(path,ReadFiles.ReadMode.SafeRead);
+            List<Instance> instances = new List<Instance>();
             string[] item_tybe = data_input.Item2;
             string[] item_value = data_input.Item3;
             int i = 0;
             Instance instance = new Instance();
-            Array_Monster monsters = new Array_Monster();
+            List<Monster> monsters = new List<Monster>();
             //定义输出变量
             foreach (string tem in item_tybe)
             {
@@ -124,7 +125,7 @@ namespace 圣灵之战pre_alpha_4
                 {
                     case "instance_id":
                         instance = new Instance();
-                        monsters = new Array_Monster();
+                        monsters = new List<Monster>();
                         instance.ID = item_value[i];
                         break;
                     case "instance_name":
@@ -156,7 +157,7 @@ namespace 圣灵之战pre_alpha_4
         }
         public static Tuple<int[], int[]> GameLevelLoad(string path)
         {
-            var data_input = ReadFiles.ItemRead(path);
+            var data_input = ReadFiles.ItemRead(path,ReadFiles.ReadMode.SafeRead);
             int game_level_total = data_input.Item1;
             string[] item_tybe = data_input.Item2;
             string[] item_value = data_input.Item3;
@@ -183,13 +184,13 @@ namespace 圣灵之战pre_alpha_4
             return result;
             //输出
         }
-        public static Array_Commodity GameShopLoad(string path)
+        public static List<Commodity> GameShopLoad(string path)
         {
-            var data_input = ReadFiles.ItemRead(path);
+            var data_input = ReadFiles.ItemRead(path,ReadFiles.ReadMode.SafeRead);
             string[] item_tybe = data_input.Item2;
             string[] item_value = data_input.Item3;
             int i = 0;
-            Array_Commodity commodities = new Array_Commodity();
+            List<Commodity> commodities = new List<Commodity>();
             Commodity commodity = null;
             foreach (string tem in item_tybe)
             {
@@ -208,24 +209,24 @@ namespace 圣灵之战pre_alpha_4
             return commodities;
 
         }
-        public static Array_Place GamePlaceLoad(string path)
+        public static List<Place> GamePlaceLoad(string path)
         {
-            var data_input = ReadFiles.ItemRead(path);
+            var data_input = ReadFiles.ItemRead(path,ReadFiles.ReadMode.SafeRead);
             string[] item_tybe = data_input.Item2;
             string[] item_value = data_input.Item3;
             int i = 0;
-            Array_Place places = new Array_Place();
+            List<Place> places = new List<Place>();
             Place place = new Place();
-            Array_Instance instances = new Array_Instance();
-            Array_NPC npcs = new Array_NPC();
+            List<Instance> instances = new List<Instance>();
+            List<NPC> npcs = new List<NPC>();
             foreach (string tem in item_tybe)
             {
                 switch (tem)
                 {
                     case "place_id":
                         place = new Place();
-                        instances = new Array_Instance();
-                        npcs = new Array_NPC();
+                        instances = new List<Instance>();
+                        npcs = new List<NPC>();
                         place.ID = item_value[i];
                         break;
                     case "place_npc":
@@ -252,13 +253,13 @@ namespace 圣灵之战pre_alpha_4
             return places;
             //输出
         }
-        public static Array_NPC GameNpcLoad(string path)
+        public static List<NPC> GameNpcLoad(string path)
         {
-            var data_input = ReadFiles.ItemRead(path);
+            var data_input = ReadFiles.ItemRead(path,ReadFiles.ReadMode.SafeRead);
             string[] item_tybe = data_input.Item2;
             string[] item_value = data_input.Item3;
             int i = 0;
-            Array_NPC npcs = new Array_NPC();
+            List<NPC> npcs = new List<NPC>();
             NPC npc = new NPC();
             foreach (string tem in item_tybe)
             {
@@ -279,7 +280,7 @@ namespace 圣灵之战pre_alpha_4
         }
         public static Tuple<string[], string[], string[], string[], string[], string[,], string[,], Tuple<int[], string[,], string[,], int[], int>> GameMissionLoad(string path)
         {
-            var data_input = ReadFiles.ItemRead(path);
+            var data_input = ReadFiles.ItemRead(path,ReadFiles.ReadMode.SafeRead);
             int game_mission_total = data_input.Item1;
             string[] item_tybe = data_input.Item2;
             string[] item_value = data_input.Item3;
@@ -390,13 +391,13 @@ namespace 圣灵之战pre_alpha_4
             return result;
             //输出
         }
-        public static Array_Player GamePlayerLoad(string path)
+        public static List<Player> GamePlayerLoad(string path)
         {
-            var data_input = ReadFiles.ItemRead(path);
+            var data_input = ReadFiles.ItemRead(path, ReadFiles.ReadMode.SafeRead);
             string[] item_tybe = data_input.Item2;
             string[] item_value = data_input.Item3;
             int i = 0;
-            Array_Player players = new Array_Player();
+            List<Player> players = new List<Player>();
             Player player = new Player();
             Array_Equipment equipments = new Array_Equipment();
             TalentPoints talentPoints = new TalentPoints();
@@ -471,7 +472,7 @@ namespace 圣灵之战pre_alpha_4
     {
         public static Array_Item PlayerItemLoad(string path)
         {
-            var data_input = ReadFiles.ItemRead(path);
+            var data_input = ReadFiles.ItemRead(path,ReadFiles.ReadMode.SafeRead);
             string[] item_tybe = data_input.Item2;
             string[] item_value = data_input.Item3;
             int i = 0;
@@ -495,7 +496,7 @@ namespace 圣灵之战pre_alpha_4
         }
         public static Array_Equipment PlayerEquipmentLoad(string path)
         {
-            var data_input = ReadFiles.ItemRead(path);
+            var data_input = ReadFiles.ItemRead(path,ReadFiles.ReadMode.SafeRead);
             string[] item_tybe = data_input.Item2;
             string[] item_value = data_input.Item3;
             int i = 0;
@@ -515,11 +516,11 @@ namespace 圣灵之战pre_alpha_4
     }
     public class GameDataWrite
     {
-        public static void GamePlayerSave(Array_Player players, string path)
+        public static void GamePlayerSave(List<Player> players, string path)
         {
-            string[] output = new string[players.GetTotal() * 13];
+            string[] output = new string[players.Count* 13];
             int i = 0;
-            foreach (Player tem in players.GetArray())
+            foreach (Player tem in players)
             {
                 output[i * 13 + 0] = "[" + tem.Name + "]";
                 output[i * 13 + 1] = "player_name=" + tem.Name;
